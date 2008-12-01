@@ -1,9 +1,9 @@
 set completion-ignore-case off
-
 set show-all-if-ambiguous on
+set input-meta on
+set output-meta on
 
 "\t": menu-complete
-
 
 # none, visible or audible
 set bell-style none
