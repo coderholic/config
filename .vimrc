@@ -18,6 +18,7 @@ for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
+
 map <silent><C-Left> <C-T>
 map <silent><C-Right> <C-]>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
