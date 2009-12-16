@@ -25,7 +25,7 @@ defbce "on"
 
 #termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #termcapinfo rxvt 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-#termcapinfo gnome-terminal 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo gnome-terminal 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #termcapinfo     xterm|xterm-256color|xterms|xs|rxvt ti@:te@
 hardstatus alwayslastline
 #hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
