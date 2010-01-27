@@ -58,10 +58,6 @@ function gedit
 {
   command gedit "$@" &
 }
-function gpdf
-{
-  command gpdf "$@" &
-}
 function scite
 {
   command scite "$@" &
