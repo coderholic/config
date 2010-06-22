@@ -68,7 +68,7 @@ function gimp
 }
 
 # Bind caps lock to escape
-xmodmap -e 'clear Lock' -e 'keycode 0x52 = Escape'
+xmodmap -e 'clear Lock' -e 'keycode 0x44442 = Escape'
 
 # A fix for Synergy. Map « -> < and » -> > and omega -> @
 echo "keycode 52 = z Z less less less less" | xmodmap -
@@ -79,7 +79,7 @@ echo "keycode 24 = q Q at at at at" | xmodmap -
 # host each tab is connected to. Adapted from http://reluctanthacker.rollett.org/node/29/, which in turn is
 # based on http://www.davidpashley.com/articles/xterm-titles-with-bash.html
 set -o functrace
-trap 'test "ssh" == "${BASH_COMMAND:0:3}" && echo -ne "\ek${BASH_COMMAND}\e\\" || echo -ne "\ek${BASH_COMMAND% *}\e\\"' DEBUG
+trap 'test "ssh" == "${BASH_COMMAND:0:3}" && echo -ne "\ek${BASH_COMMAND}\e\\" || echo -ne "\ek${BASH_COMMAND%% *}\e\\"' DEBUG
 export PS1='\[\033[1;20m\]\h|\[\033[1;35m\]\u \[\033[1;34m\]/\W:\[\033[0m\] '
 
 fortune

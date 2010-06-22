@@ -4,6 +4,8 @@
 :set showmatch
 :set ai
 :set ts=4
+:set sw=4
+:set sts=4
 :syntax on
 :set backspace=start,indent,eol
 :set wrapscan
@@ -40,3 +42,9 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 let php_sql_query=1                                                                                        
 let php_htmlInStrings=1
 
+" Folding
+" http://smartic.us/2009/04/06/code-folding-in-vim/
+"set foldmethod=indent
+"set foldnestmax=10
+"set foldlevel=1
+"set foldnestmax=2
