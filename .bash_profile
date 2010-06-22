@@ -68,7 +68,7 @@ function gimp
 }
 
 # Bind caps lock to escape
-xmodmap -e 'clear Lock' -e 'keycode 0x44442 = Escape'
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' -e 'keycode 0x52 = Escape'
 
 # A fix for Synergy. Map « -> < and » -> > and omega -> @
 echo "keycode 52 = z Z less less less less" | xmodmap -
