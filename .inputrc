@@ -1,3 +1,6 @@
+# For options see: http://tiswww.case.edu/php/chet/readline/rltop.html
+# To reload this file after changes:
+# Ctrl-X Ctrl-R
 set completion-ignore-case off
 set show-all-if-ambiguous on
 set input-meta on

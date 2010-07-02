@@ -5,7 +5,7 @@
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 #enable bash completion
-[ -f /etc/profile.d/bash-completion ] && source /etc/profile.d/bash-completion
+[ -f /etc/bash-completion ] && source /etc/bash-completion
 
 # default bash_history is 500
 export HISTSIZE=1000
@@ -24,7 +24,6 @@ shopt -s cdspell
 umask 022
 
 export LS_OPTIONS='--color=yes'
-eval `dircolors`
 alias ls='ls $LS_OPTIONS --color'
 alias ll='ls $LS_OPTION -lh --color'
 alias l='ls $LS_OPTIONS -Ff --color'
@@ -43,10 +42,7 @@ alias ping='ping -c 5'
 alias mkdir='mkdir -p'
 alias grep='grep --colour'
 
-alias Aemerge='ACCEPT_KEYWORDS="~amd64" emerge -s'
-alias ftp='lftp'
 export INPUTRC=~/.inputrc
-
 export PROMPT_COMMAND='echo -n -e "\033k\033\0134"'
 
 # functions so you don't have to type '&' for graphical binaries
@@ -78,8 +74,9 @@ echo "keycode 24 = q Q at at at at" | xmodmap -
 # Set screen title to the currently running command. Include arguments if the command is "ssh" so we know what 
 # host each tab is connected to. Adapted from http://reluctanthacker.rollett.org/node/29/, which in turn is
 # based on http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-set -o functrace
-trap 'test "ssh" == "${BASH_COMMAND:0:3}" && echo -ne "\ek${BASH_COMMAND}\e\\" || echo -ne "\ek${BASH_COMMAND%% *}\e\\"' DEBUG
+#set -o functrace
+#trap 'test "ssh" == "${BASH_COMMAND:0:3}" && echo -ne "\ek${BASH_COMMAND}\e\\" || echo -ne "\ek${BASH_COMMAND%% *}\e\\"' DEBUG
+
 export PS1='\[\033[1;20m\]\h|\[\033[1;35m\]\u \[\033[1;34m\]/\W:\[\033[0m\] '
 
 fortune
