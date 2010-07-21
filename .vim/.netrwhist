@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/bmd/workspace/mendeley/www/libraries/oauth-php'
+let g:netrw_dirhist_2='/home/bmd/workspace/mendeley/www/classes/mendeley/command'
+let g:netrw_dirhist_3='/home/bmd/workspace/puppet'

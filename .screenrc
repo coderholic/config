@@ -51,7 +51,7 @@ bindkey -k k9 hardstatus alwaysignore
 # F1 and F2 to move one screen forward or backward
 bindkey -k k2 prev
 bindkey -k k3 next
-bindkey -k k5 windowlist
+#bindkey -k k5 windowlist
 
 bindkey ^[[1;5A copy
 # Default windows
