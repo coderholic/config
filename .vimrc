@@ -1,17 +1,34 @@
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+filetype plugin indent on
 :set wildmenu
 :set nu 
-:set smartindent
+":set smartindent
 :set showmatch
 :set ai
 :set ts=4
-:set sw=4
-:set sts=4
+:set sw=4 " treat 4 spaces as a tab when deleting4
+:set sts=4 " treat 4 spaces as a tab when deleting
+:set expandtab " insert spaces instead of \t
 :syntax on
 :set backspace=start,indent,eol
 :set wrapscan
 :set t_Co=256
 :colo gardener 
 set path+=$PWD/**
+"
+" gvim ctrl-c/v support
+nmap <C-V> "+gP
+imap <C-V> <ESC><C-V>i
+vmap <C-C> "+y
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+set nobackup
+set nowb
+set noswapfile
 
 python << EOF
 import os
@@ -27,7 +44,8 @@ map <silent><C-Right> <C-]>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
 
-filetype plugin on
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
 au FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -49,10 +67,15 @@ let php_htmlInStrings=1
 "set foldlevel=1
 "set foldnestmax=2
 
+" CTags config
+let Tlist_Compact_Format = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 let Tlist_WinWidth = 40
 map <F4> :TlistToggle<cr>
 map <F6> :NERDTreeToggle<cr>
-" map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " More ctags stuff: http://amix.dk/blog/post/19329 
 " Generate ctags data for a PHP project: ctags-exuberant -f ~/.vim/mytags/mendeley -h ".php" -R --totals=yes --tag-relative=yes --PHP-kinds=+cf --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/'
