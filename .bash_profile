@@ -24,15 +24,10 @@ shopt -s cdspell
 umask 022
 
 export LS_OPTIONS='--color=yes'
-alias ls='ls $LS_OPTIONS --color'
 alias ll='ls $LS_OPTION -lh --color'
 alias l='ls $LS_OPTIONS -Ff --color'
-alias la='ls $LS_OPTIONS -af --color'
 alias ld='ls -d $LS_OPTIONS -af --color'  # directories only!
 alias pgrep='pgrep -lf'
-#
-# Some more alias to avoid making mistakes:
-alias copy='cp'
 
 #  -h makes the numbers human
 alias df='df -h'
