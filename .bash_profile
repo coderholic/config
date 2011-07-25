@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+PYTHONSTARTUP=~/.pythonrc.py
+export PYTHONSTARTUP
+
 # sets the title of the xterm (or the current tab)
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
@@ -105,7 +108,21 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 #set -o functrace
 #trap 'test "ssh" == "${BASH_COMMAND:0:3}" && echo -ne "\ek${BASH_COMMAND}\e\\" || echo -ne "\ek${BASH_COMMAND%% *}\e\\"' DEBUG
 
-export PS1='\[\033[1;20m\]\h|\[\033[1;35m\]\u \[\033[1;34m\]/\W:\[\033[0m\] '
+function parse_git_branch {
+    ref=$(git branch 2>/dev/null|grep \*|sed 's/* //') || return
+    if [ "$ref" != "" ]
+    then
+        echo "("${ref}") "
+    fi
+}
+
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+LIGHT_PURPLE="\[\033[1;34m\]"
+WHITE="\[\033[1;20m\]"
+CYAN="\[\033[1;35m\]"
+export PS1="$WHITE\h|$CYAN\u $YELLOW\$(parse_git_branch)$LIGHT_PURPLE/\W:\[\033[0m\] "
 
 export BASEPROMPT='\h|\e${PINK_COLOR}\u\e${ORANGE_COLOR} `activevirtualenv`\e${GREEN_COLOR}\W:\e${DEFAULT_COLOR}'
 export PROMPT="${BASEPROMPT}
