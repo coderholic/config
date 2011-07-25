@@ -7,19 +7,42 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 #enable bash completion
 [ -f /etc/bash-completion ] && source /etc/bash-completion
 
+DEFAULT_COLOR="[33;0m"
+GRAY_COLOR="[37;1m"
+PINK_COLOR="[35;1m"
+GREEN_COLOR="[32;1m"
+CYAN_COLOR="[36;1m"
+ORANGE_COLOR="[33;1m"
+RED_COLOR="[31;1m"
+if [ `id -u` == '0' ]; then
+  USER_COLOR=$RED_COLOR
+else
+  USER_COLOR=$ORANGE_COLOR
+fi
+
+function lastcommandfailed() {
+  code=$?
+  if [ $code != 0 ]; then
+    echo -n $'\033[37;1m exited \033[31;1m'
+    echo -n $code
+    echo -n $'\033[37;1m'
+  fi
+}
+
+function activevirtualenv() {
+  if [ -n "$VIRTUAL_ENV" ]; then
+      echo -n "("
+      echo -n `basename $VIRTUAL_ENV`
+      echo -n ") "
+  fi
+}
+
 # default bash_history is 500
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 export HISTCONTROL=ignoredups
-
-export BROWSER=firefox-bin
-
-# make pilot-xfer go faster than 9600
-export PILOTRATE=57600
-# make it append, rather than overwrite the history
 shopt -s histappend
-# fix typos
-shopt -s cdspell
+
 
 umask 022
 
@@ -45,26 +68,36 @@ function display
 {
   command display "$@" &
 }
-function gedit
-{
-  command gedit "$@" &
-}
-function scite
-{
-  command scite "$@" &
-}
-function gimp
-{
-  command gimp "$@" &
+
+if [ `uname` == "Darwin" ]; then
+    # Mac specific code
+    alias ls='ls -G'
+    export ARCHFLAGS="-arch i386 -arch x86_64"
+    export PATH="$PATH:/usr/local/mysql/bin/"
+else
+    # Non-mac specific code
+    # A fix for Synergy. Map « -> < and » -> > and omega -> @
+    echo "keycode 52 = z Z less less less less" | xmodmap -
+    echo "keycode 53 = x X greater greater greater greater" | xmodmap -
+    echo "keycode 24 = q Q at at at at" | xmodmap -
+
+    # Bind caps lock to escape
+    xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' -e 'keycode 0x52 = Escape'
+fi
+
+function pyopen() {
+  vim `pyfind $@`
 }
 
-# Bind caps lock to escape
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' -e 'keycode 0x52 = Escape'
+function pyfind() {
+  x=`python -c "import $1; print $1.__file__" | sed 's/\.pyc$/\.py/'`;
+  if [ $? -ne 0 ]; then
+    exit $?
+  fi
+  grep -q "__init__.py$" <<< $x && echo `dirname $x` || echo $x
+}
 
-# A fix for Synergy. Map « -> < and » -> > and omega -> @
-echo "keycode 52 = z Z less less less less" | xmodmap -
-echo "keycode 53 = x X greater greater greater greater" | xmodmap -
-echo "keycode 24 = q Q at at at at" | xmodmap -
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative" 
 
 # Set screen title to the currently running command. Include arguments if the command is "ssh" so we know what 
 # host each tab is connected to. Adapted from http://reluctanthacker.rollett.org/node/29/, which in turn is
@@ -73,5 +106,27 @@ echo "keycode 24 = q Q at at at at" | xmodmap -
 #trap 'test "ssh" == "${BASH_COMMAND:0:3}" && echo -ne "\ek${BASH_COMMAND}\e\\" || echo -ne "\ek${BASH_COMMAND%% *}\e\\"' DEBUG
 
 export PS1='\[\033[1;20m\]\h|\[\033[1;35m\]\u \[\033[1;34m\]/\W:\[\033[0m\] '
+
+export BASEPROMPT='\h|\e${PINK_COLOR}\u\e${ORANGE_COLOR} `activevirtualenv`\e${GREEN_COLOR}\W:\e${DEFAULT_COLOR}'
+export PROMPT="${BASEPROMPT}
+\e${CYAN_COLOR}$ \e${DEFAULT_COLOR}"
+export PS1=$PROMPT
+
+# python
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONSTARTUP="$HOME/.pythonrc.py"
+
+# virtualenvwrapper and pip
+if [ `id -u` != '0' ]; then
+  export VIRTUALENV_USE_DISTRIBUTE=1
+  export WORKON_HOME=$HOME/.virtualenvs
+  export PIP_VIRTUALENV_BASE=$WORKON_HOME
+  export PIP_REQUIRE_VIRTUALENV=true
+  export PIP_RESPECT_VIRTUALENV=true
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+  fi
+fi
 
 fortune
