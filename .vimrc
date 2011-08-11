@@ -15,7 +15,9 @@ filetype plugin indent on
 :set backspace=start,indent,eol
 :set wrapscan
 :set t_Co=256
-:colo gardener 
+:colo gardener
+:set hidden
+:set switchbuf=usetab,newtab " use an existing tab if one exists for a file, otherwise create a new one
 set path+=$PWD/**
 "
 " gvim ctrl-c/v support
@@ -29,6 +31,12 @@ set autoread
 set nobackup
 set nowb
 set noswapfile
+
+if has("gui_running")
+  if has("mac")
+    set guifont=Menlo:h12
+  endif
+endif
 
 python << EOF
 import os
@@ -72,10 +80,10 @@ let Tlist_Compact_Format = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_Ctags_Cmd = "ctags"
 let Tlist_WinWidth = 40
 map <F4> :TlistToggle<cr>
 map <F6> :NERDTreeToggle<cr>
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " More ctags stuff: http://amix.dk/blog/post/19329 
 " Generate ctags data for a PHP project: ctags-exuberant -f ~/.vim/mytags/mendeley -h ".php" -R --totals=yes --tag-relative=yes --PHP-kinds=+cf --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/'

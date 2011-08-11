@@ -75,6 +75,7 @@ function display
 if [ `uname` == "Darwin" ]; then
     # Mac specific code
     alias ls='ls -G'
+    alias vim='mvim -v -p'
     export ARCHFLAGS="-arch i386 -arch x86_64"
     export PATH="$PATH:/usr/local/mysql/bin/"
 else
@@ -124,7 +125,7 @@ WHITE="\[\033[1;20m\]"
 CYAN="\[\033[1;35m\]"
 export PS1="$WHITE\h|$CYAN\u $YELLOW\$(parse_git_branch)$LIGHT_PURPLE/\W:\[\033[0m\] "
 
-export BASEPROMPT='\h|\e${PINK_COLOR}\u\e${ORANGE_COLOR} `activevirtualenv`\e${GREEN_COLOR}\W:\e${DEFAULT_COLOR}'
+export BASEPROMPT='\h|\e${PINK_COLOR}\u\e${ORANGE_COLOR} `activevirtualenv`\e${RED_COLOR}`parse_git_branch`\e${GREEN_COLOR}\W:\e${DEFAULT_COLOR}'
 export PROMPT="${BASEPROMPT}
 \e${CYAN_COLOR}$ \e${DEFAULT_COLOR}"
 export PS1=$PROMPT
