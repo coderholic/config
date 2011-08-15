@@ -23,7 +23,7 @@ function lastcommandfailed() {
 function activevirtualenv() {
   if [ -n "$VIRTUAL_ENV" ]; then
       echo -n "("
-      echo -n `basename $VIRTUAL_ENV`
+      echo -n $(basename $VIRTUAL_ENV)
       echo -n ") "
   fi
 }
@@ -94,7 +94,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 # taken from http://plasti.cx/2009/10/23/vebose-git-dirty-prompt
 # origin of work http://henrik.nyh.se/2008/12/git-dirty-prompt
 function parse_git_dirty {
-  status=`git status 2> /dev/null`
+status=$(git status 2> /dev/null)
   dirty=`    echo -n "${status}" 2> /dev/null | grep -q "Changed but not updated" 2> /dev/null; echo "$?"`
   untracked=`echo -n "${status}" 2> /dev/null | grep -q "Untracked files" 2> /dev/null; echo "$?"`
   ahead=`    echo -n "${status}" 2> /dev/null | grep -q "Your branch is ahead of" 2> /dev/null; echo "$?"`
@@ -132,6 +132,7 @@ GRAY_COLOR="[37;1m"
 PINK_COLOR="[35;1m"
 GREEN_COLOR="[32;1m"
 CYAN_COLOR="[36;1m"
+RED_COLOR="[31;1m"
 ORANGE_COLOR="[33;1m"
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
@@ -141,7 +142,7 @@ WHITE="\[\033[1;20m\]"
 CYAN="\[\033[1;35m\]"
 export PS1="$WHITE\h|$CYAN\u $YELLOW\$(parse_git_branch)$LIGHT_PURPLE/\W:\[\033[0m\] "
 
-BASEPROMPT="$WHITE`lastcommandfailed`[\A] \h|\[\e${PINK_COLOR}\]\u\[\e${ORANGE_COLOR}\] `activevirtualenv`\[\e${RED_COLOR}\]`parse_git_branch`\[\e${GREEN_COLOR}\]\w\[\e${DEFAULT_COLOR}\]"
+BASEPROMPT="$WHITE\$(lastcommandfailed)[\A] \h|\[\e${PINK_COLOR}\]\u\[\e${ORANGE_COLOR}\] \$(activevirtualenv)\[\e${RED_COLOR}\]\$(parse_git_branch)\[\e${GREEN_COLOR}\]\w\[\e${DEFAULT_COLOR}\]"
 PROMPT="${BASEPROMPT}\n\[\e${CYAN_COLOR}\]$ \[\e${DEFAULT_COLOR}\]"
 export PS1=$PROMPT
 
