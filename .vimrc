@@ -18,7 +18,48 @@ filetype plugin indent on
 :colo gardener
 :set hidden
 :set switchbuf=usetab,newtab " use an existing tab if one exists for a file, otherwise create a new one
+let mapleader = ","
 set path+=$PWD/**
+
+let g:CommandTMaxHeight=20
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Fast editing of the .vimrc
+map <leader>e :e! ~/.vimrc<cr>
+
+" When vimrc is edited, reload it
+autocmd! bufwritepost vimrc source ~/.vimrc
+
+set wildmenu "Turn on WiLd menu
+
+set ruler "Always show current position
+
+set cmdheight=2 "The commandbar height
+
+set hid "Change buffer - without saving
+
+" Set backspace config
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+set ignorecase "Ignore case when searching
+set smartcase
+
+set hlsearch "Highlight search things
+
+set incsearch "Make search act like search in modern browsers
+set nolazyredraw "Don't redraw while executing macros 
+
+set magic "Set magic on, for regular expressions
+
+set showmatch "Show matching bracets when text indicator is over them
+
+set nobackup
+set nowb
+set noswapfile
+
 "
 " gvim ctrl-c/v support
 nmap <C-V> "+gP
@@ -47,8 +88,9 @@ for p in sys.path:
 		vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
 
-map <silent><C-Left> <C-T>
-map <silent><C-Right> <C-]>
+map <silent><C-Left> :bprev<cr>
+map <silent><C-Right> :bnext<cr>
+map <silent><C-Down> :bd!<cr>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
 
