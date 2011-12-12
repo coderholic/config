@@ -1,5 +1,6 @@
 # Most of these from http://sontek.net/tips-and-tricks-for-the-python-interpreter
 import os
+import sys
 
 try:
     import readline
@@ -7,14 +8,19 @@ except ImportError:
     print("Module readline not available.")
 else:
     import rlcompleter
-    readline.parse_and_bind("tab: complete")
+    if(sys.platform == 'darwin'):
+        readline.parse_and_bind ("bind ^I rl_complete")
+    else:
+        readline.parse_and_bind("tab: complete")
 
     # Enable a History
     HISTFILE="%s/.pyhistory" % os.environ["HOME"]
 
     # Read the existing history if there is one
-    if os.path.exists(HISTFILE):
+    try:
         readline.read_history_file(HISTFILE)
+    except:
+        pass
 
     # Set maximum number of items that will be written to the history file
     readline.set_history_length(300)
@@ -26,9 +32,9 @@ else:
 
     import atexit
     atexit.register(savehist)
+    del atexit
 finally:
     del rlcompleter
-    del atexit
 
 WELCOME=''
 # Color Support
