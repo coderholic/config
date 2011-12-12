@@ -84,8 +84,10 @@ else
     echo "keycode 53 = x X greater greater greater greater" | xmodmap -
     echo "keycode 24 = q Q at at at at" | xmodmap -
 
-    # Bind caps lock to escape
-    xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' -e 'keycode 0x52 = Escape'
+    # Bind caps lock to control
+    xmodmap -e 'keycode 66 = Control_L'
+    xmodmap -e 'clear Lock'
+    xmodmap -e 'add Control = Control_L' 
 fi
 
 function pyopen() {
