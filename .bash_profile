@@ -64,6 +64,7 @@ if [ `uname` == "Darwin" ]; then
     alias ls='ls -G'
     alias vim='mvim -v -p'
     export ARCHFLAGS="-arch i386 -arch x86_64"
+    export PATH="/usr/local/bin/:$PATH"
     export PATH="$PATH:/usr/local/mysql/bin/"
 else
     # Non-mac specific code
@@ -152,6 +153,7 @@ export PS1=$PROMPT
 # python
 export PYTHONDONTWRITEBYTECODE=1
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages --distribute'
 
 # virtualenvwrapper and pip
 if [ `id -u` != '0' ]; then

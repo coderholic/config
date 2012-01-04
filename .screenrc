@@ -65,8 +65,10 @@ bindkey -k k9 hardstatus alwaysignore
 bindkey -k k2 prev
 bindkey -k k3 next
 
-bindkey ^[[1;5D prev
-bindkey ^[[1;5C next
+bindkey ^[[1;5D prev # Ctrl-left Linux
+bindkey ^[[1;5C next # Ctrl-right Linux
+bindkey "^[[5D" prev # OSX
+bindkey "^[[5C" next # OSX
 
 #bindkey -k k5 windowlist
 
