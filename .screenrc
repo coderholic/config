@@ -11,9 +11,11 @@ shell -bash
 vbell_msg "[[[ ding ]]]"
 vbell off
 nethack on
-shelltitle ": |bash"
+#shelltitle ": |bash"
 setenv LC_CTYPE en_US.UTF-8
 defutf8 on
+
+escape ^\\
 
  # terminfo and termcap for nice 256 color terminal
 # allow bold colors - necessary for some reason
@@ -57,6 +59,8 @@ bind h
 bind 'K' kill
 bind 'w' windowlist
 
+bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
+
 # F8 to turn the status bar off
 bindkey -k k8 hardstatus alwayslastline
 # F9 to turn the status bar on 
@@ -65,10 +69,12 @@ bindkey -k k9 hardstatus alwaysignore
 bindkey -k k2 prev
 bindkey -k k3 next
 
-bindkey ^[[1;5D prev # Ctrl-left Linux
-bindkey ^[[1;5C next # Ctrl-right Linux
-bindkey "^[[5D" prev # OSX
-bindkey "^[[5C" next # OSX
+# Do cat > /dev/null and then start typing to work out the keycodes that need to go here
+bindkey ^[[1;5D prev # Ctrl-left
+bindkey ^[[1;5C next # Ctrl-right
+bindkey ^[[1;5B kill # Ctrl-down
+#bindkey "^[[5D" prev # OSX
+#bindkey "^[[5C" next # OSX
 
 #bindkey -k k5 windowlist
 

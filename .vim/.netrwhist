@@ -1,6 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/bmd/config/.vim'
 let g:netrw_dirhist_2='/home/bmd/.vim'
 let g:netrw_dirhist_3='/Users/bmd/projects/busmapper-iphone/BusMapper.xcodeproj'
 let g:netrw_dirhist_4='/Users/bmd/projects/busmapper-iphone/BusMapper.xcodeproj/project.xcworkspace'
+let g:netrw_dirhist_5='/Users/bmd/projects/lightbox/crontab'
