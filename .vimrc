@@ -115,7 +115,7 @@ function! PHPSettings()
     :set sts=2 " treat 2 spaces as a tab when deleting
     " highlight anything over 80 chars
     highlight OverLength ctermbg=darkred ctermfg=grey guibg=#FFD9D9 
-    match ErrorMsg '\%>80v.+'
+    match OverLength /\%>80v.\+/
     let php_sql_query=1                                                                                        
     let php_htmlInStrings=1
 endfunction
