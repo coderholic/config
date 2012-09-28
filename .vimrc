@@ -15,7 +15,7 @@ filetype plugin indent on
 :set backspace=start,indent,eol
 :set wrapscan
 :set t_Co=256
-:colo gardener
+:colo evening
 :set hidden
 :set switchbuf=usetab,newtab " use an existing tab if one exists for a file, otherwise create a new one
 let mapleader = ","
@@ -74,6 +74,7 @@ set nowb
 set noswapfile
 
 if has("gui_running")
+  :colo gardener
   if has("mac")
     set guifont=Menlo:h12
   endif
@@ -105,10 +106,19 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 " You might also find this useful
-" PHP Generated Code Highlights (HTML & SQL)                                              
-  
-let php_sql_query=1                                                                                        
-let php_htmlInStrings=1
+"
+au BufNewFile,BufRead *.{php,phpt} call PHPSettings()
+
+function! PHPSettings()
+    :set ts=2
+    :set sw=2 " treat 2 spaces as a tab when deleting2
+    :set sts=2 " treat 2 spaces as a tab when deleting
+    " highlight anything over 80 chars
+    highlight OverLength ctermbg=darkred ctermfg=grey guibg=#FFD9D9 
+    match ErrorMsg '\%>80v.+'
+    let php_sql_query=1                                                                                        
+    let php_htmlInStrings=1
+endfunction
 
 " Folding
 " http://smartic.us/2009/04/06/code-folding-in-vim/
