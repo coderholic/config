@@ -15,7 +15,7 @@ filetype plugin indent on
 :set backspace=start,indent,eol
 :set wrapscan
 :set t_Co=256
-:colo evening
+:colo railscasts
 :set hidden
 :set switchbuf=usetab,newtab " use an existing tab if one exists for a file, otherwise create a new one
 let mapleader = ","
@@ -74,7 +74,6 @@ set nowb
 set noswapfile
 
 if has("gui_running")
-  :colo gardener
   if has("mac")
     set guifont=Menlo:h12
   endif
