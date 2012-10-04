@@ -10,4 +10,4 @@ for file in os.listdir("."):
             os.symlink(original, new)
             print "Symlinked %s -> %s" % (original, new)
         except Exception, e:
-            print e
+            print e, file
