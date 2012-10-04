@@ -15,20 +15,19 @@ nethack on
 setenv LC_CTYPE en_US.UTF-8
 defutf8 on
 
-escape ^\\
-
- # terminfo and termcap for nice 256 color terminal
+#terminfo and termcap for nice 256 color terminal
 # allow bold colors - necessary for some reason
 attrcolor b ".I"
 # tell screen how to set colors. AB = background, AF=foreground
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+termcapinfo xterm-256color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
 # erase background with current bg color
-defbce "on" 
+defbce "on"
+term xterm-256color
 
-#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-#termcapinfo rxvt 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-termcapinfo gnome-terminal 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-#termcapinfo     xterm|xterm-256color|xterms|xs|rxvt ti@:te@
+escape ^\\
+
 hardstatus alwayslastline
 #hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
 hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
@@ -65,9 +64,6 @@ bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
 bindkey -k k8 hardstatus alwayslastline
 # F9 to turn the status bar on 
 bindkey -k k9 hardstatus alwaysignore
-# F1 and F2 to move one screen forward or backward
-bindkey -k k2 prev
-bindkey -k k3 next
 
 # Do cat > /dev/null and then start typing to work out the keycodes that need to go here
 bindkey ^[[1;5D prev # Ctrl-left
