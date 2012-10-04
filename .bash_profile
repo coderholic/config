@@ -168,4 +168,4 @@ if [ `id -u` != '0' ]; then
   fi
 fi
 
-fortune
+[[ -f /usr/bin/fortune ]] && fortune

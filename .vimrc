@@ -89,8 +89,8 @@ for p in sys.path:
 		vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
 
-map <silent><C-Left> :bprev<cr>
-map <silent><C-Right> :bnext<cr>
+map <silent><C-j> :bprev<cr>
+map <silent><C-l> :bnext<cr>
 map <silent><C-Down> :bd!<cr>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
@@ -109,12 +109,16 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 "
 au BufNewFile,BufRead *.{php,phpt} call PHPSettings()
 
+"let g:phpErrorMarker#openQuickfix=0
+"let g:phpErrorMarker#automake = 1
+
 function! PHPSettings()
     :set ts=2
     :set sw=2 " treat 2 spaces as a tab when deleting2
     :set sts=2 " treat 2 spaces as a tab when deleting
     " highlight anything over 80 chars
     highlight OverLength ctermbg=darkred ctermfg=grey guibg=#FFD9D9 
+    highlight Error ctermbg=darkred ctermfg=grey guibg=#FFD9D9 
     match OverLength /\%>80v.\+/
     let php_sql_query=1                                                                                        
     let php_htmlInStrings=1

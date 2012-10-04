@@ -25,9 +25,3 @@
 [submodule ".vim/bundle/phpErrorMarker"]
 	path = .vim/bundle/phpErrorMarker
 	url = https://github.com/vim-scripts/phpErrorMarker.git
-[submodule ".vim/bundle/checksyntax_vim"]
-	path = .vim/bundle/checksyntax_vim
-	url = https://github.com/tomtom/checksyntax_vim.git
-[submodule ".vim/bundle/quickfixsigns_vim"]
-	path = .vim/bundle/quickfixsigns_vim
-	url = https://github.com/tomtom/quickfixsigns_vim.git
