@@ -9,10 +9,11 @@ Bundle 'skammer/vim-css-color'
 Bundle 'pangloss/vim-javascript'
 Bundle 'chrismetcalf/vim-json'
 Bundle 'scrooloose/syntastic'
-Bundle 'kein/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'tpope/vim-surround'
+Bundle 'Markdown'
 
 filetype plugin indent on
 :set wildmenu
