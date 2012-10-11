@@ -1,6 +1,19 @@
+set nocompatible
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle' 
+Bundle 'skammer/vim-css-color'
+Bundle 'pangloss/vim-javascript'
+Bundle 'chrismetcalf/vim-json'
+Bundle 'scrooloose/syntastic'
+Bundle 'kein/ctrlp.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'tpope/vim-surround'
+
 filetype plugin indent on
 :set wildmenu
 :set nu 
@@ -8,7 +21,7 @@ filetype plugin indent on
 :set showmatch
 :set ai
 :set ts=4
-:set sw=4 " treat 4 spaces as a tab when deleting4
+:set sw=4 " treat 4 spaces as a tab when deleting
 :set sts=4 " treat 4 spaces as a tab when deleting
 :set expandtab " insert spaces instead of \t
 :syntax on
