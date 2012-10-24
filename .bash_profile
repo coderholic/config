@@ -5,7 +5,7 @@ PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
 # sets the title of the xterm (or the current tab)
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+# export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 #enable bash completion
 [ -f /etc/bash-completion ] && source /etc/bash-completion
@@ -37,6 +37,7 @@ shopt -s histappend
 umask 022
 
 export LS_OPTIONS='--color=yes'
+alias less="less -R"
 alias ll='ls $LS_OPTION -lh --color'
 alias l='ls $LS_OPTIONS -Ff --color'
 alias ld='ls -d $LS_OPTIONS -af --color'  # directories only!
@@ -70,9 +71,11 @@ else
     # Non-mac specific code
 
     # Bind caps lock to control
-    xmodmap -e 'keycode 66 = Control_L'
-    xmodmap -e 'clear Lock'
-    xmodmap -e 'add Control = Control_L' 
+    if [ -n "$DISPLAY" ]; then
+      xmodmap -e 'keycode 66 = Control_L'
+      xmodmap -e 'clear Lock'
+      xmodmap -e 'add Control = Control_L' 
+    fi
 fi
 
 function pyopen() {
@@ -127,7 +130,7 @@ function parse_git_branch {
     ref=$(git branch 2>/dev/null|grep \*|sed 's/* //') || return
     if [ "$ref" != "" ]
     then
-        echo "("${ref}$(parse_git_dirty)") "
+        echo "("${ref}") "
     fi
 }
 
@@ -168,4 +171,4 @@ if [ `id -u` != '0' ]; then
   fi
 fi
 
-fortune
+[[ -f /usr/bin/fortune ]] && fortune

@@ -1,6 +1,20 @@
+set nocompatible
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle' 
+Bundle 'skammer/vim-css-color'
+Bundle 'pangloss/vim-javascript'
+Bundle 'chrismetcalf/vim-json'
+Bundle 'scrooloose/syntastic'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'Markdown'
+
 filetype plugin indent on
 :set wildmenu
 :set nu 
@@ -8,14 +22,14 @@ filetype plugin indent on
 :set showmatch
 :set ai
 :set ts=4
-:set sw=4 " treat 4 spaces as a tab when deleting4
+:set sw=4 " treat 4 spaces as a tab when deleting
 :set sts=4 " treat 4 spaces as a tab when deleting
 :set expandtab " insert spaces instead of \t
 :syntax on
 :set backspace=start,indent,eol
 :set wrapscan
 :set t_Co=256
-:colo wombat
+:colo railscasts
 :set hidden
 :set switchbuf=usetab,newtab " use an existing tab if one exists for a file, otherwise create a new one
 let mapleader = ","
@@ -88,8 +102,8 @@ for p in sys.path:
 		vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
 
-map <silent><C-Left> :bprev<cr>
-map <silent><C-Right> :bnext<cr>
+map <silent><C-j> :bprev<cr>
+map <silent><C-l> :bnext<cr>
 map <silent><C-Down> :bd!<cr>
 map <silent><C-Up> <C-^>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -106,10 +120,23 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 " You might also find this useful
-" PHP Generated Code Highlights (HTML & SQL)                                              
-  
-let php_sql_query=1                                                                                        
-let php_htmlInStrings=1
+"
+au BufNewFile,BufRead *.{php,phpt} call PHPSettings()
+
+"let g:phpErrorMarker#openQuickfix=0
+"let g:phpErrorMarker#automake = 1
+
+function! PHPSettings()
+    :set ts=2
+    :set sw=2 " treat 2 spaces as a tab when deleting2
+    :set sts=2 " treat 2 spaces as a tab when deleting
+    " highlight anything over 80 chars
+    highlight OverLength ctermbg=darkred ctermfg=grey guibg=#FFD9D9 
+    highlight Error ctermbg=darkred ctermfg=grey guibg=#FFD9D9 
+    match OverLength /\%>80v.\+/
+    let php_sql_query=1                                                                                        
+    let php_htmlInStrings=1
+endfunction
 
 " Folding
 " http://smartic.us/2009/04/06/code-folding-in-vim/
