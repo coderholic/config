@@ -19,4 +19,4 @@ whitespace = red reverse
 whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [user]
 name = Ben Dowling
-email = ben.m.dowling@gmail.com
+	email = bmd@fb.com

@@ -88,19 +88,24 @@ set nowb
 set noswapfile
 
 if has("gui_running")
+  colo gardener
   if has("mac")
     set guifont=Menlo:h12
   endif
 endif
 
-python << EOF
-import os
-import sys
-import vim
-for p in sys.path:
-	if os.path.isdir(p):
-		vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
+
+"if has('python')
+"    python << EOF
+ "   import os
+ "   import sys
+    "import vim
+    "for p in sys.path:
+    "    if os.path.isdir(p):
+    "        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+    "EOF
+    "finish
+"endif
 
 map <silent><C-j> :bprev<cr>
 map <silent><C-l> :bnext<cr>
