@@ -110,6 +110,7 @@ endif
 map <silent><C-j> :bprev<cr>
 map <silent><C-l> :bnext<cr>
 map <silent><C-Down> :bd!<cr>
+map <silent><C-Up> <C-^>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 inoremap <Nul> <C-x><C-o>
 
@@ -158,6 +159,6 @@ let Tlist_Ctags_Cmd = "ctags"
 let Tlist_WinWidth = 40
 map <F4> :TlistToggle<cr>
 map <F6> :NERDTreeToggle<cr>
-map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F8> :!ctags .<CR>
 " More ctags stuff: http://amix.dk/blog/post/19329 
 " Generate ctags data for a PHP project: ctags-exuberant -f ~/.vim/mytags/mendeley -h ".php" -R --totals=yes --tag-relative=yes --PHP-kinds=+cf --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/'
