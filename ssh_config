@@ -1,5 +1,6 @@
 Host *
     Protocol 2
+    ClientAliveInterval 60
     TCPKeepAlive yes
     ServerAliveInterval 240
     ControlMaster auto

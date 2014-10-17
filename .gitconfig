@@ -20,3 +20,5 @@
 [user]
     name = Ben Dowling
     email = ben.m.dowling@gmail.com
+[push]
+	default = matching

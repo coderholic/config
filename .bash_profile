@@ -42,6 +42,7 @@ alias ll='ls $LS_OPTION -lh --color'
 alias l='ls $LS_OPTIONS -Ff --color'
 alias ld='ls -d $LS_OPTIONS -af --color'  # directories only!
 alias pgrep='pgrep -lf'
+alias gurl='perl -pe s@\"\}@@g | perl -pe s@\\\\/@/@g | grep -i -o -P "http://[^\s\\\\\"]+"'
 
 #  -h makes the numbers human
 alias df='df -h'
@@ -63,7 +64,6 @@ function display
 if [ `uname` == "Darwin" ]; then
     # Mac specific code
     alias ls='ls -G'
-    alias vim='mvim -v -p'
     export ARCHFLAGS="-arch i386 -arch x86_64"
     export PATH="/usr/local/bin/:$PATH"
     export PATH="$PATH:/usr/local/mysql/bin/"
