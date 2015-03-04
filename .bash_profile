@@ -20,6 +20,11 @@ function lastcommandfailed() {
   fi
 }
 
+function new_tmux() {
+    TMUX= tmux new-session -d -s $1
+    tmux switch-client -t $1
+}
+
 function activevirtualenv() {
   if [ -n "$VIRTUAL_ENV" ]; then
       echo -n "("
@@ -36,6 +41,9 @@ shopt -s histappend
 
 umask 022
 
+alias ntmux="TMUX= tmux new-session -d -s "
+alias stmux="tmux switch-client -t "
+
 export LS_OPTIONS='--color=yes'
 alias less="less -R"
 alias ll='ls $LS_OPTION -lh --color'
@@ -43,6 +51,7 @@ alias l='ls $LS_OPTIONS -Ff --color'
 alias ld='ls -d $LS_OPTIONS -af --color'  # directories only!
 alias pgrep='pgrep -lf'
 alias gurl='perl -pe s@\"\}@@g | perl -pe s@\\\\/@/@g | grep -i -o -P "http://[^\s\\\\\"]+"'
+alias gip='grep -Eo "([0-9]{1,3}\.){3}[0-9]{1,3}"'
 
 #  -h makes the numbers human
 alias df='df -h'
