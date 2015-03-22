@@ -20,6 +20,11 @@ function lastcommandfailed() {
   fi
 }
 
+function new_tmux() {
+    TMUX= tmux new-session -d -s $1
+    tmux switch-client -t $1
+}
+
 function activevirtualenv() {
   if [ -n "$VIRTUAL_ENV" ]; then
       echo -n "("
@@ -37,6 +42,9 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 
 umask 022
+
+alias ntmux="TMUX= tmux new-session -d -s "
+alias stmux="tmux switch-client -t "
 
 export LS_OPTIONS='--color=yes'
 alias less="less -R"
