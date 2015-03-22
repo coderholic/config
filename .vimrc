@@ -1,19 +1,19 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle' 
-Bundle 'skammer/vim-css-color'
-Bundle 'pangloss/vim-javascript'
-Bundle 'chrismetcalf/vim-json'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'Markdown'
+Plugin 'gmarik/vundle' 
+Plugin 'skammer/vim-css-color'
+Plugin 'pangloss/vim-javascript'
+Plugin 'chrismetcalf/vim-json'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'Markdown'
 
 filetype plugin indent on
 :set wildmenu
@@ -116,6 +116,10 @@ inoremap <Nul> <C-x><C-o>
 
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd FileType markdown set nonumber
+autocmd FileType markdown colorscheme morning
+
 au FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -126,7 +130,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 " You might also find this useful
 "
-au BufNewFile,BufRead *.{php,phpt} call PHPSettings()
+au BufNewFile,BufRead *.{php,phpt,arb,rb} call PHPSettings()
 
 "let g:phpErrorMarker#openQuickfix=0
 "let g:phpErrorMarker#automake = 1

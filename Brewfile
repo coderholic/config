@@ -1,44 +1,32 @@
-# Install command-line tools using Homebrew
-# Usage: `brew bundle Brewfile`
+# Install Brew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Make sure we’re using the latest Homebrew
-update
-
-# Upgrade any already-installed formulae
-upgrade
-
-# Install GNU core utilities (those that come with OS X are outdated)
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-install coreutils
-
-install moreutils
-install findutils
-install gnu-sed --default-names
-install bash
-install bash-completion
-install wget --enable-iri
-
-install vim --override-system-vi
-install homebrew/dupes/grep
-
-install nmap
-
-# Install other useful binaries
-install ack
-install git
-install node # This installs `npm` too using the recommended installation method
-install p7zip
-install pigz
-install pv
-install rename
-install tree
-install webkit2png
-install siege
-install proxychains-ng
-install libxml2
-install htop-osx
-install brew-cask
-install tor
-
-# Remove outdated versions from the cellar
-cleanup
+# Update and install packages
+brew update
+brew upgrade
+brew install coreutils
+brew install moreutils
+brew install findutils
+brew install gnu-sed --default-names
+brew install bash
+brew install bash-completion
+brew install wget --enable-iri
+brew install vim --override-system-vi
+brew install homebrew/dupes/grep
+brew install nmap
+brew install ack
+brew install git
+brew install node # This installs `npm` too using the recommended installation method
+brew install p7zip
+brew install pigz
+brew install pv
+brew install rename
+brew install tree
+brew install webkit2png
+brew install siege
+brew install proxychains-ng
+brew install libxml2
+brew install htop-osx
+brew install brew-cask
+brew install tor
+brew cleanup
