@@ -28,10 +28,12 @@ function activevirtualenv() {
   fi
 }
 
-# default bash_history is 500
-export HISTSIZE=1000
-export HISTFILESIZE=1000
-export HISTCONTROL=ignoredups
+export INPUTRC=~/.inputrc
+export PROMPT_COMMAND='echo -n -e "\033k\033\0134"'
+
+export HISTSIZE=100000
+export HISTFILESIZE=1000000
+export HISTCONTROL=ignoredups:erasedups 
 shopt -s histappend
 
 umask 022
@@ -43,6 +45,7 @@ alias l='ls $LS_OPTIONS -Ff --color'
 alias ld='ls -d $LS_OPTIONS -af --color'  # directories only!
 alias pgrep='pgrep -lf'
 alias gurl='perl -pe s@\"\}@@g | perl -pe s@\\\\/@/@g | grep -i -o -P "http://[^\s\\\\\"]+"'
+alias gip='grep -Eo "([0-9]{1,3}\.){3}[0-9]{1,3}"'
 
 #  -h makes the numbers human
 alias df='df -h'
@@ -51,9 +54,6 @@ alias ps='ps'
 alias ping='ping -c 5'
 alias mkdir='mkdir -p'
 alias grep='grep --colour'
-
-export INPUTRC=~/.inputrc
-export PROMPT_COMMAND='echo -n -e "\033k\033\0134"'
 
 # functions so you don't have to type '&' for graphical binaries
 function display
@@ -163,7 +163,7 @@ if [ `id -u` != '0' ]; then
   export VIRTUALENV_USE_DISTRIBUTE=1
   export WORKON_HOME=$HOME/.virtualenvs
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
-  export PIP_REQUIRE_VIRTUALENV=true
+  export PIP_REQUIRE_VIRTUALENV=false
   export PIP_RESPECT_VIRTUALENV=true
   export VIRTUAL_ENV_DISABLE_PROMPT=1
   if [ -e "/usr/local/bin/virtualenvwrapper.sh" ]; then
@@ -172,3 +172,5 @@ if [ `id -u` != '0' ]; then
 fi
 
 [[ -f /usr/bin/fortune ]] && fortune
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
