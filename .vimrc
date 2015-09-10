@@ -15,6 +15,8 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'Markdown'
 
+call vundle#end()
+
 filetype plugin indent on
 :set wildmenu
 :set nu 
@@ -34,6 +36,13 @@ filetype plugin indent on
 :set switchbuf=usetab,newtab " use an existing tab if one exists for a file, otherwise create a new one
 let mapleader = ","
 set path+=$PWD/**
+
+" Commenting blocks of code.
+autocmd FileType c,cpp,java,scala,js  let b:comment_leader = '// '
+autocmd FileType sh,ruby,python,conf,coffe let b:comment_leader = '# '
+autocmd FileType vim let b:comment_leader = '" '
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 let g:CommandTMaxHeight=20
 

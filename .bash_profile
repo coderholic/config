@@ -33,6 +33,13 @@ function activevirtualenv() {
   fi
 }
 
+function json_keys() {
+    grep "{.*}" -o $1 | jq -r 'keys' | grep "[a-z]" | sort -u
+}
+
+function json() {
+    grep "{.*}" -o $1 | jq -r $2
+}
 export INPUTRC=~/.inputrc
 export PROMPT_COMMAND='echo -n -e "\033k\033\0134"'
 
