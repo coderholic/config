@@ -52,6 +52,7 @@ alias stmux="tmux switch-client -t "
 
 export LS_OPTIONS='--color=yes'
 alias less="less -R"
+alias ls='ls --color'
 alias ll='ls $LS_OPTION -lh --color'
 alias l='ls $LS_OPTIONS -Ff --color'
 alias ld='ls -d $LS_OPTIONS -af --color'  # directories only!
