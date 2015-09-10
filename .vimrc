@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/vundle' 
+
 Plugin 'skammer/vim-css-color'
 Plugin 'pangloss/vim-javascript'
 Plugin 'chrismetcalf/vim-json'
@@ -14,6 +15,8 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'Markdown'
+
+call vundle#end() 
 
 filetype plugin indent on
 :set wildmenu
@@ -36,6 +39,7 @@ let mapleader = ","
 set path+=$PWD/**
 
 let g:CommandTMaxHeight=20
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -74,11 +78,6 @@ set nobackup
 set nowb
 set noswapfile
 
-"
-" gvim ctrl-c/v support
-nmap <C-V> "+gP
-imap <C-V> <ESC><C-V>i
-vmap <C-C> "+y
 
 " Set to auto read when a file is changed from the outside
 set autoread
