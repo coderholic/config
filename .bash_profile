@@ -10,6 +10,10 @@ export PYTHONSTARTUP
 #enable bash completion
 [ -f /etc/bash-completion ] && source /etc/bash-completion
 
+function ip() {
+    curl -s ipinfo.io/$1
+}
+
 
 function lastcommandfailed() {
   code=$?

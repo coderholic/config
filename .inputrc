@@ -18,3 +18,12 @@ set bell-style none
 "\e[6~": end-of-history
 "\e[3~": delete-char
 "\e[2~": quoted-insert
+
+# word jump on SHIFT left/right arrows
+"\e[0;2D": backward-word
+"\e[1;2C": forward-word
+
+
+# ctrl left/right
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
