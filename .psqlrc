@@ -1,9 +1,7 @@
-\set QUIET 1
 \set COMP_KEYWORD_CASE upper
 \pset null '(null)'
 \pset pager off
 \x auto
 \timing
-\set VERBOSITY verbose
-\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTFILE ~/.psql_history-:DBNAME
 

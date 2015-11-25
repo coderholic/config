@@ -14,9 +14,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'sjl/vitality.vim'
+Plugin 'FooSoft/vim-argwrap'
 Plugin 'Markdown'
+Plugin 'Bexec'
 
 call vundle#end()
+
 
 filetype plugin indent on
 :set wildmenu
@@ -40,16 +44,19 @@ set path+=$PWD/**
 
 " Commenting blocks of code.
 autocmd FileType c,cpp,java,scala,js  let b:comment_leader = '// '
-autocmd FileType sh,ruby,python,conf,coffe let b:comment_leader = '# '
+autocmd FileType sh,ruby,python,conf,coffee let b:comment_leader = '# '
 autocmd FileType vim let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+nnoremap <silent> <leader>a :ArgWrap<CR>
 
 let g:CommandTMaxHeight=20
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>t :!npm test<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc<cr>
@@ -122,7 +129,7 @@ inoremap <Nul> <C-x><C-o>
 
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+au BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType markdown set nonumber
 autocmd FileType markdown colorscheme morning
 
